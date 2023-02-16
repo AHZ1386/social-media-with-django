@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h2>یوزرنیم:</h2>
+<h1>سلام : {{user.get_username}}</h1>
+<h2>بیو:</h2>
+<h1>{{user.biography}}</h1>
+<h2>فالو میکند:</h2>
+{% for name in user.following.all %}
+  <h1> فالو کرده: {{name}}</h1>
+{% endfor %}
+<h1>تعداد فالو کرده  {{user.following.count}} </h1>
+<h2>دنبال کننده ها</h2>
+<h1>تعداد دنبال  کننده {{user.followed_by.count}} </h1>
+{% for followed_by_name in user.followed_by.all %}
+  <h1> دنبال شده توسط : {{followed_by_name.user}}</h1>
+{% endfor %}
+<h2>توییت ها </h2>
+{% for twitte in twittes %}
+<h1>{{twitte.text|truncatewords:5}} <a href="{% url 'edit_twitte' twitte.pk %}">ویرایش کنید</a> </h1>
+{% endfor %}
+<a target="_blank" href="{% url 'edit_profile' %}"><h1>پروفایل خود را تغییر دهید</h1></a>
+<a href="{% url 'logout' %}"><h1>خارج شوید</h1></a>
+{% endblock main %}

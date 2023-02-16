@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load  static %}
+{% block main %}
+<article class="post">
+    <div class="post__header">
+        <div class="post__profile">
+            {% if profile.profile_image %}
+            <a href="{{profile.profile_image.url}}" target="_blank" class="post__avatar">
+            {%else%}
+            <a href="" target="_blank" class="post__avatar">
+            {% endif %}
+                {% if profile.profile_image%}
+                <img  src="{{profile.profile_image.url}}" alt="User Picture">
+                {%else%}
+                <img src="{% static "assets/default-user.png" %}" alt="User Picture"/>
+                {% endif %}
+              </a>
+        </div>
+    </div>
+    <div class="post__footer">
+        <div class="post__infos">
+            <div class="post__description">
+                <span>
+                    <h1>نام کاربری : {{profile.username}}</h1>
+                    <h3>اسم : {{profile.first_name}} {{profile.last_name}} </h3>
+                    <h2>بیو : {{profile.biography}}</h2>
+                    <h2>تعداد فالو کرده {{profile.following.count}}</h2>
+                <h2>تعداد دنبال کننده {{profile.followers.count}}</h2>
+                </span>
+            </div>
+            <span class="post__date-time">
+                
+            </span>
+        </div>
+    </div>
+</article>
+{% endblock main %}

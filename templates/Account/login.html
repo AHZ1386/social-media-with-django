@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block main %}
+<form method="POST" action="{% url 'login' %}"  enctype="multipart/form-data" >
+    {% csrf_token %} 
+    {{ form.as_p }}  
+
+    <input type="submit" name="login" value="لاگین">
+</form>
+{% endblock main %}

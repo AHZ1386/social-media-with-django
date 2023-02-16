@@ -1,0 +1,13 @@
+body{
+    direction: rtl;
+}
+.post__content{
+    background-color: white ;
+}
+
+.post__user{ 
+    font-size: 20px;
+}
+.form-group{
+    margin-right: 30px;
+}

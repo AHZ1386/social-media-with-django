@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block main %}
+<link rel="stylesheet" href="{% static "main_control.css" %}">
+<div class="edit_profilro">
+<form action="{% url 'add_post' %}" method="post">
+    {% csrf_token %}
+    {{form.text|as_crispy_field}}
+    <input style="margin-top: 13px; margin-right: 20px;" type="submit" value="twiite it">
+</form>
+</div>
+{% endblock main %}

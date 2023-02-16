@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+
+{% block main %}
+<div class="form-group" >
+
+    <form method="POST" action="{% url 'singup' %}" >   
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="singup">
+    </form>
+</div>
+{% endblock main %}

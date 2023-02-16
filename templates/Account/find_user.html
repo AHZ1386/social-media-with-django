@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+  {% for profile in profile_result %}
+  <article class="post">
+    <div class="post__header">
+      <div class="post__profile">
+        <a href="" target="_blank" class="post__avatar">
+          {% if profile.profile_image %}
+          <img  src="{{profile.profile_image.url}}" alt="User Picture">
+          {%else%}
+          <img src="{% static "assets/default-user.png" %}" alt="User Picture" />
+          {% endif %}
+        </a>
+        <a href="{% url 'get_user' profile.username %}" target="_blank" class="post__user">{{profile.username}}</a>
+        <br>
+    </div>
+    <div class="post__footer">
+        <div class="post__infos">
+          <div class="post__description">
+            <span>
+                <a href="">{{profile.first_name}}</a>
+                <a href="">{{profile.last_name}}</a>    
+            </span>
+          </div>
+  
+          <span class="post__date-time">name</span>
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+  <h3>توییت های پیدا شده</h3>
+  {% for twitt in twitte_result %}
+  <article class="post">
+    <div class="post__header">
+      <div class="post__profile">
+        <a href="" target="_blank" class="post__avatar">
+          {% if profile.profile_image %}
+          <img  src="{{twitt.auther.profile_image.url}}" alt="User Picture">
+          {%else%}
+          <img src="{% static "assets/default-user.png" %}" alt="User Picture" />
+          {% endif %}
+        </a>
+        <a href="{% url 'get_user' twitt.auther.username %}" target="_blank" class="post__user">{{twitt.auther.username}}</a>
+        <br>
+    </div>
+    <div class="post__footer">
+      <div class="post__infos">
+        <div class="post__description">
+          <span>
+            <p style="text-align: right;">{{twitt.text}}</p>
+
+          </span>
+        </div>
+
+        <span class="post__date-time">{{twitt.created}}</span>
+      </div>
+    </div>
+    </article>
+  {% endfor %}
+{% endblock main %}

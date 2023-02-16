@@ -1,0 +1,15 @@
+a{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block main %}
+
+ 
+<div class="form-group">
+<form action="{% url 'delete_account' %}" method="POST"  enctype="multipart/form-data" >
+    {% csrf_token %}
+    <input type="submit" value="اکانت خود را پاک کنید">
+    <a href="{% url 'profile' %}"><button>برگشتن</button></a>
+</form>
+</div>
+
+{% endblock main %}

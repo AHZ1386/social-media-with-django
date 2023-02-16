@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block main %}
+
+ 
+<div class="form-group">
+<form action="{% url 'edit_profile' %}" method="POST"  enctype="multipart/form-data" >
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="save chenges">
+</form>
+</div>
+
+{% endblock main %}

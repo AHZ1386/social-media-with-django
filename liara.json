@@ -1,0 +1,21 @@
+{
+    "app":"amirzeinali",
+    "disks": [
+      {
+        "name": "userimage",
+        "mountTo": "media"
+      },
+      {
+        "name": "accountmigrations",
+        "mountTo": "Account/migrations"
+      },
+      {
+        "name": "twittermigrations",
+        "mountTo": "twitter/migrations"
+      }
+    ],
+    "django": {
+      "timezone": "Asia/Theran",
+      "pythonVersion": "3.11"
+    }
+}
