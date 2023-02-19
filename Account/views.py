@@ -72,14 +72,19 @@ def followToggle(request, user):
     user = CustomUser.objects.get(username=user)
     currentUser = CustomUser.objects.get(username=request.user.username)
     following = user.following.all()
-    if user != currentUser.username:
+    if user == request.user:
+        return HttpResponseRedirect('/')
+    elif user != currentUser.username:
         if currentUser in following:
             user.following.remove(currentUser.id)
         else:
             user.following.add(currentUser.id)
 
-    return HttpResponseRedirect('/')
-
+        return HttpResponseRedirect('/')
+    else:
+        raise HttpResponseRedirect('/')
+        
+    
 
 class LogOutView(LoginRequiredMixin, View):
     template_name = 'Accout/logout.html'

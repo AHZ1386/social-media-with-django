@@ -17,22 +17,31 @@
           <img src="media/{{twitte.auther.profile_image}}" alt="User Picture">
           {% endif %}
         </a>
+        
         {% if request.user.get_username != twitte.auther.get_username %}
         <a href="{% url 'get_user' twitte.auther %}" target="_blank" class="post__user">{{twitte.auther}}</a>
         {% else %}
         <a href="{% url 'profile'  %}" target="_blank" class="post__user">{{twitte.auther}}</a>
         
         {% endif %}
+        {% if request.user != twitte.auther %}
+        {% if request.user in twitte.auther.following.all %}
+        <a class="post__user" href="{% url 'followToggle' twitte.auther %}"> انفالو کنید</a>
+        {%else%}
+        <a class="post__user" href="{% url 'followToggle' twitte.auther %}"> فالو کنید</a>
+        {% endif %}
+        {% endif %}
       </div>
     </div>
     <div class="post__footer">
       <div class="post__infos">
         <div class="post__description">
-          <span>  
+          <span>
+            <p>{{twitte.auther.following.all}}</p>
             <p>{{twitte.text}}</p>
           </span>
         </div>
-
+       
         <span class="post__date-time">{{twitte.created}}</span>
       </div>
     </div>
@@ -43,4 +52,5 @@
 
 
 </div>
+<a class="post__user" href="{% url 'followToggle' request.user %}">  فالو کنید</a>
 {% endblock main %}
