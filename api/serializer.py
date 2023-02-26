@@ -5,3 +5,9 @@ class TwitteSerializer(serializers.ModelSerializer):
     class Meta:
         model = twitt
         fields = '__all__'
+
+
+class EditTwitteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = twitt
+        fields = ('text',)

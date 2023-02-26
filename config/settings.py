@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     'Account',
     'twitter',
     'crispy_forms',
+    
+    # rest_framework
+    'api',
+    'django.contrib.sites',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +155,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = ('static',)
 # CRISPY
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# REST_FRAMEWORK
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+SITE_ID = 1
