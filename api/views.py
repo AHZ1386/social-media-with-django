@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, CreateAPIView
 from twitter.models import twitt
-from .serializer import TwitteSerializer, EditTwitteSerializer, PostTwitteSerialaizer
+from .serializer import TwitteSerializer, EditTwitteSerializer, PostTwitteSerialaizer, UserProfileUpdateSerialaizer
 from rest_framework.permissions import IsAuthenticated
 from .permissions import IsAutherOrReadOnly, IsSuperUser
 from rest_framework.views import APIView
@@ -58,3 +58,15 @@ class LoginOut(APIView):
     def get(self, request, *args, **kwargs):
         logout(request)
         return Response(200)
+    
+class UserProfileUpdate(RetrieveUpdateAPIView):
+    
+    queryset = CustomUser.objects.all()
+    
+    serializer_class = UserProfileUpdateSerialaizer
+    
+    permission_classes = (IsAuthenticated,)
+    
+    def get_object(self):
+        return self.request.user
+        
