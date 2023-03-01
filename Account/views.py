@@ -1,6 +1,6 @@
 from django.contrib.auth import logout
 from .froms import SignUpForm, UserEditForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from twitter.models import twitt
 from .models import CustomUser
 from django.views.generic import CreateView, UpdateView, DeleteView
