@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import TwitteList, EditTwitte, PostTwitte, LoginOut, UserProfileUpdate
+from .views import TwitteList, EditTwitte, PostTwitte, LoginOut, UserProfileUpdate,get_user
 app_name = 'api'
 urlpatterns = [
     path('', TwitteList.as_view(), name='all_twitte_list'),
@@ -8,4 +8,7 @@ urlpatterns = [
     # path('account/followToggle/<str:username>', FollowToggle.as_view(), name='followToggle')
     path("account/logout/", LoginOut.as_view(), name='logout'),
     path("account/update-profile/", UserProfileUpdate.as_view(), name='logout'),
+    path("account/get-user/<str:username>", get_user, name='get_user'),
+
+    
 ]

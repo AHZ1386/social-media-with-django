@@ -7,4 +7,6 @@ class CustomUser(AbstractUser):
     following = models.ManyToManyField("self", blank=True, related_name="followers", symmetrical=False)
     def get_absolute_url(self):
         return '/'
+    def get_model_fields(model):
+        return model._meta.fields
     

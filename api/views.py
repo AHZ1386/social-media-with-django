@@ -7,6 +7,7 @@ from .permissions import IsAutherOrReadOnly, IsSuperUser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from Account.models import CustomUser
+from rest_framework.decorators import api_view
 from django.contrib.auth import logout
 # send all Twitte
 
@@ -49,24 +50,42 @@ class PostTwitte(CreateAPIView):
 #             else:
 #                 user.following.add(currentUser.id)
 
-            
-        
-    
+
 class LoginOut(APIView):
     permission_classes = (IsAuthenticated,)
-    
+
     def get(self, request, *args, **kwargs):
         logout(request)
         return Response(200)
-    
+
+
 class UserProfileUpdate(RetrieveUpdateAPIView):
-    
+
     queryset = CustomUser.objects.all()
-    
+
     serializer_class = UserProfileUpdateSerialaizer
-    
+
     permission_classes = (IsAuthenticated,)
-    
+
     def get_object(self):
         return self.request.user
-        
+
+
+@api_view(["get"])
+def get_user(request, username):
+    user = [
+        {
+            "user_name": CustomUser.objects.get(username=username).username,
+            "first_name": CustomUser.objects.get(username=username).first_name,
+            "last_name": CustomUser.objects.get(username=username).last_name,
+            "biography": CustomUser.objects.get(username=username).biography,
+            "profile_image": CustomUser.objects.get(username=username).profile_image.url,
+            "following": CustomUser.objects.get(username=username).following.values('username'),
+            "following_number": CustomUser.objects.get(username=username).following.count(),
+            "followers": CustomUser.objects.get(username=username).followers.values('username'),
+            "followers_number": CustomUser.objects.get(username=username).followers.count(),
+            "twittse": CustomUser.objects.get(username=username).twittes.values('text', 'created')
+        }
+
+    ]
+    return Response(user)
